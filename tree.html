@@ -1,0 +1,929 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="css/paper.css" />
+<script src="js/joint.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="http://www.jointjs.com/downloads/joint.css"></link>
+<script type="text/javascript" src="http://www.jointjs.com/downloads/joint.js" ></script>
+
+
+
+</head>
+<title>Family Tree</title>
+
+<body>
+    <div id="myholder"> </div>
+<script>
+  var graph = new joint.dia.Graph;
+
+
+var paper = new joint.dia.Paper({
+    el: $('#myholder'),
+    width: 2400,
+    height: 1500,
+    model: graph,
+    gridSize: 1
+});
+var treerow1 = [];
+
+solidx = 850;
+solidy = 45;
+
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+70, y: solidy+40},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+treerow1.push(rect);
+
+var row1names = ['Chen Xu', 'Joseph Cocco', 'Bertrand Tay', 'Calvin Gudeman', '(Chun) Peter Ho', 'Kai Amundsen', 'Sravan Mettupalli'];
+
+var origx = solidx-750;
+var origy = solidy+255;
+
+for(i=0; i<=7; i++){
+	if(i==0){
+		var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx, y: solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Stephen Choi', fill: 'white' } }
+		});	
+		treerow1.push(rect);
+		var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: treerow1[0].id}
+		});	
+		treerow1.push(link);	
+	}
+	else{
+		origx = origx + 200;
+		var rect = new joint.shapes.basic.Rect({
+                
+    			position: { x: origx, y: origy },
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: { text: row1names[i-1], fill: 'white' } }
+		});
+		treerow1.push(rect);
+		var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: treerow1[0].id}
+		});	
+		treerow1.push(link);	
+	}
+
+}
+treerow2 = [];
+
+//Connector from Jason Lang to fam
+
+
+
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-50, y: 405+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Jason Lang', fill: 'white' } }
+		});	
+		treerow2.push(rect);
+		lang = [];
+		lang.push(rect);
+		var link = new joint.dia.Link({
+    			source: { id: treerow1[0].id },
+    			target: { id: rect.id}
+		});	
+		treerow2.push(link);
+
+		var rect2 = new joint.shapes.basic.Rect({
+    			position: { x: solidx-300, y: 355+solidy},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect2: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+		var link = new joint.dia.Link({
+    			source: { id: treerow1[0].id },
+    			target: { id: rect2.id}
+		});
+treerow2.push(rect2);
+treerow2.push(link);
+treerow3a = [];
+
+//Chris Kelch
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+140, y: 405+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Chris Kelch', fill: 'white' } }
+		});	
+		kelch = [];
+		kelch.push(rect);
+		treerow2.push(rect);
+		var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: treerow1[0].id}
+		});	
+		treerow2.push(link);
+
+
+//connector from Amanda Pooley to fam
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-380, y: solidy+455},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});
+		treerow3a.push(rect);
+
+//Amanda Pooley
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-450, y: 405+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Amanda Pooley', fill: 'white' } }
+		});	
+		var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: treerow3a[0].id}
+		});
+		treerow3a.push(rect);
+		treerow3a.push(link);
+		var link = new joint.dia.Link({
+    			source: { id: rect2.id },
+    			target: { id: rect.id}
+		});	
+		treerow3a.push(link);
+
+//Alicia Chuchro
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-250, y: 405+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Alicia Chuchro', fill: 'white' } }
+		});	
+		var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: treerow1[0].id}
+		});
+		alicia = [];
+		alicia.push(rect);
+		treerow3a.push(rect);
+		treerow3a.push(link);
+
+//Brian Spencer
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-250, y: solidy+700},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Brian Spencer', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: alicia[0].id },
+    			target: { id: rect.id}
+		});
+		treerow3a.push(rect);
+		treerow3a.push(link);
+
+//Caitlin O Brien
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-380, y: solidy+505},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Caitlin O Brien', fill: 'white' } }
+		});
+		var link = new joint.dia.Link({
+    			source: { id: treerow3a[0].id},
+    			target: { id: rect.id}
+		});
+	treerow3a.push(rect);	
+	treerow3a.push(link);
+	treerow4b = [];
+	treerow4b.push(rect);
+
+//Cassie Schreider
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-550, y: solidy+505},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Cassie Schreider', fill: 'white' } }
+		});
+		var link = new joint.dia.Link({
+    			source: { id: treerow3a[0].id},
+    			target: { id: rect.id}
+		});
+	treerow4a = [];
+	treerow4a.push(rect);
+	treerow3a.push(rect);	
+	treerow3a.push(link);
+
+//Andrew Kieffer
+var rect = new joint.shapes.basic.Rect({
+    			position: {x: solidx-650, y: 405+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Andrew Kieffer', fill: 'white' } }
+		});
+		var link = new joint.dia.Link({
+    			source: { id: treerow1[0].id},
+    			target: { id: rect.id}
+		});
+	treerow3a.push(rect);	
+	treerow3a.push(link);
+var rect2 = new joint.shapes.basic.Rect({
+    			position: { x: solidx-675, y: 455+solidy},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect2: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+	
+	var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: rect2.id}
+		});	
+	treerow3a.push(rect2);
+	treerow3a.push(link);
+
+//Matt Foley
+
+var rect = new joint.shapes.basic.Rect({
+    			position: {x: solidx+320, y: 405+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Matt Foley', fill: 'white' } }
+		});
+		var link = new joint.dia.Link({
+    			source: { id: treerow1[0].id},
+    			target: { id: rect.id}
+		});
+	treerow3a.push(rect);	
+	treerow3a.push(link);
+var rect3 = new joint.shapes.basic.Rect({
+    			position: { x: solidx+400, y: 455+solidy},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect3: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+	
+	var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: rect3.id}
+		});	
+	treerow3a.push(rect3);
+	treerow3a.push(link);
+//Andrew Sykes
+var rect = new joint.shapes.basic.Rect({
+    			position: {x: solidx+340, y: 505+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Andrew Sykes', fill: 'white' } }
+		});
+	
+	var link = new joint.dia.Link({
+    			source: { id: rect3.id },
+    			target: { id: rect.id}
+		});	
+	treerow4c = [];
+	treerow4c.push(rect);
+	treerow3a.push(rect);
+	treerow3a.push(link);
+
+//John Balamuta
+
+var rect = new joint.shapes.basic.Rect({
+    			position: {x: solidx+520, y: 405+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'John Balamuta', fill: 'white' } }
+		});
+		var link = new joint.dia.Link({
+    			source: { id: treerow1[0].id},
+    			target: { id: rect.id}
+		});
+	treerow3a.push(rect);	
+	treerow3a.push(link);
+
+//linker
+var rect4 = new joint.shapes.basic.Rect({
+    			position: { x: solidx+600, y: 455+solidy},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect4: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+	
+	var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: rect4.id}
+		});	
+	treerow3a.push(rect4);
+	treerow3a.push(link);
+
+//Irsillia Shkurti
+
+var rect = new joint.shapes.basic.Rect({
+    			position: {x: solidx+820, y: 405+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Irsillia Shkurti', fill: 'white' } }
+		});
+		var link = new joint.dia.Link({
+    			source: { id: treerow1[0].id},
+    			target: { id: rect.id}
+		});
+	treerow3a.push(rect);	
+	treerow3a.push(link);
+	
+//Irsillia linker
+var rect7 = new joint.shapes.basic.Rect({
+    			position: { x: solidx+900, y: 455+solidy},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect7: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+	
+	var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: rect7.id}
+		});	
+	treerow3a.push(rect7);
+	treerow3a.push(link);
+	treerow3c = [];
+	treerow3c.push(rect7);
+
+
+
+
+//Patrick Haddox
+var rect = new joint.shapes.basic.Rect({
+    			position: {x: solidx+540, y: 505+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Patrick Haddox', fill: 'white' } }
+		});
+	
+	var link = new joint.dia.Link({
+    			source: { id: rect4.id },
+    			target: { id: rect.id}
+		});	
+	treerow3a.push(rect);
+	treerow3a.push(link);
+
+//Haddox linker
+var rect5 = new joint.shapes.basic.Rect({
+    			position: { x: solidx+610, y: solidy+555},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect5: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: rect5.id}
+		});
+	treerow4d = [];
+	treerow4d.push(rect5);
+	treerow4d.push(link);
+
+//Kate Hurley
+var rect = new joint.shapes.basic.Rect({
+    			position: {x: solidx+900, y: 505+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Kate Hurley', fill: 'white' } }
+		});
+	
+	var link = new joint.dia.Link({
+    			source: { id: treerow3c[0].id },
+    			target: { id: rect.id}
+		});	
+	treerow3c.push(rect);
+	treerow3c.push(link);
+
+//Hurley linker
+var rect8 = new joint.shapes.basic.Rect({
+    			position: { x: solidx+970, y: solidy+555},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect8: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: rect8.id}
+		});
+	treerow3d = [];
+	treerow3d.push(rect8);
+	treerow3d.push(link);
+
+//Allen Chang
+var rect = new joint.shapes.basic.Rect({
+    			position: {x: solidx-750, y: 900+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Allen Chang', fill: 'white' } }
+		});
+	var link = new joint.dia.Link({
+    			source: { id: rect2.id },
+    			target: { id: rect.id}
+		});	
+	treerow3a.push(rect);
+	treerow3a.push(link);
+	
+
+treerow3 = [];
+
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+40, y: solidy+455},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: lang[0].id },
+    			target: { id: rect.id}
+		});
+	
+	treerow3.push(rect);
+	treerow3.push(link);
+//Andrew Jacobs
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+90, y: solidy+505},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Andrew Jacobs', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow3[0].id },
+    			target: { id: rect.id}
+		});
+	treerow3.push(rect);	
+	treerow3.push(link);
+
+//Jacobs Linker
+var rect6 = new joint.shapes.basic.Rect({
+    			position: { x: solidx+160, y: solidy+555},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect6: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: rect6.id}
+		});
+	treerow4e = [];
+	treerow4e.push(rect6);
+	treerow4e.push(link);
+
+//Yost Smith
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-110, y: solidy+505},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Yost Smith', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow3[0].id },
+    			target: { id: rect.id}
+		});
+	treerow3.push(rect);	
+	treerow3.push(link);
+treerow4 = [];
+var rect2 = new joint.shapes.basic.Rect({
+    			position: { x: solidx-40, y: 555+solidy},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect2: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+treerow4.push(rect2);
+var link = new joint.dia.Link({
+    			source: { id: rect.id },
+    			target: { id: rect2.id}
+		});
+treerow4.push(link);
+	
+//Robert Chuchro
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-190, y: solidy+605},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Robert Chuchro', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow4[0].id },
+    			target: { id: rect.id}
+		});
+	robert = [];
+	robert.push(rect);
+	treerow4.push(rect);	
+	treerow4.push(link);
+
+//Michael Newman
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-190, y: solidy+785},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Michael Newman', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: robert[0].id },
+    			target: { id: rect.id}
+		});
+	treerow4.push(rect);	
+	treerow4.push(link);
+
+//PD
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+160, y: 785+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Patrick Duffy', fill: 'white' } }
+		});	
+		pd = [];
+		pd.push(rect);
+		var link = new joint.dia.Link({
+    			source: { id: kelch[0].id },
+    			target: { id: rect.id}
+		});
+	treerow4.push(rect);	
+	treerow4.push(link);
+
+//Dave Zarychta
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+165, y: 885+solidy},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Dave Zarychta', fill: 'white' } }
+		});	
+		var link = new joint.dia.Link({
+    			source: { id: pd[0].id },
+    			target: { id: rect.id}
+		});
+	treerow4.push(rect);	
+	treerow4.push(link);
+
+
+//Erica Peterson
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-20, y: solidy+605},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Erica Peterson', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow4[0].id },
+    			target: { id: rect.id}
+		});
+	treerow4.push(rect);	
+	treerow4.push(link);
+
+//Grace Redeker
+
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-550, y: solidy+605},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Grace Redeker', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow4a[0].id },
+    			target: { id: rect.id}
+		});
+	treerow4a.push(rect);	
+	treerow4a.push(link);
+
+//Jenny Lin
+
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-400, y: solidy+1005},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Jenny Lin', fill: 'white' } }
+		});	
+	jenny = [];
+	jenny.push(rect);
+	var link = new joint.dia.Link({
+    			source: { id: treerow4b[0].id },
+    			target: { id: rect.id}
+		});
+	treerow4b.push(rect);	
+	treerow4b.push(link);
+//link
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-420, y: 1105+solidy},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+	jenny.push(rect);	
+	var link = new joint.dia.Link({
+    			source: { id: jenny[0].id },
+    			target: { id: rect.id}
+		});	
+		treerow4b.push(rect);
+		
+		treerow4b.push(link);
+//AVD		
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-650, y: solidy+1005},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'AVD', fill: 'white' } }
+		});	
+
+	var link = new joint.dia.Link({
+    			source: { id: jenny[0].id },
+    			target: { id: rect.id}
+		});		
+		treerow4b.push(rect);
+		jenny.push(rect);
+		treerow4b.push(link);
+	var link = new joint.dia.Link({
+    			source: { id: jenny[1].id },
+    			target: { id: rect.id}
+		});		
+		treerow4b.push(link);
+//AD
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-720, y: solidy+1205},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'AD', fill: 'white' } }
+		});	
+		treerow4b.push(rect);
+		var link = new joint.dia.Link({
+    			source: { id: jenny[1].id },
+    			target: { id: rect.id}
+		});		
+		treerow4b.push(link);
+//Bridget
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-540, y: solidy+1205},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Bridget', fill: 'white' } }
+		});	
+		treerow4b.push(rect);
+		var link = new joint.dia.Link({
+    			source: { id: jenny[1].id },
+    			target: { id: rect.id}
+		});		
+		treerow4b.push(link);	
+//Soham
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-360, y: solidy+1205},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Soham', fill: 'white' } }
+		});	
+		treerow4b.push(rect);
+		var link = new joint.dia.Link({
+    			source: { id: jenny[1].id },
+    			target: { id: rect.id}
+		});		
+		treerow4b.push(link);		
+	
+//Isabel 
+
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-190, y: solidy+1005},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Isabel Ahrendt', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow4b[0].id },
+    			target: { id: rect.id}
+		});
+	isabel = [];
+	isabel.push(rect);
+	treerow4b.push(rect);	
+	treerow4b.push(link);
+//link
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+20, y: 1105+solidy},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});	
+	isabel.push(rect);	
+	izfam = [];
+	izfam.push(rect);
+	var link = new joint.dia.Link({
+    			source: { id: isabel[0].id },
+    			target: { id: rect.id}
+		});	
+		treerow4b.push(rect);
+		
+		treerow4b.push(link);
+//Andy		
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+80, y: solidy+1005},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Andy Peterman', fill: 'white' } }
+		});	
+
+	var link = new joint.dia.Link({
+    			source: { id: isabel[0].id },
+    			target: { id: rect.id}
+		});		
+		isabel.push(rect);
+		isabel.push(link);
+	var link = new joint.dia.Link({
+    			source: { id: isabel[1].id },
+    			target: { id: rect.id}
+		});	
+		isabel.push(link);
+//Colton
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+180, y: solidy+1205},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Colton Cannon', fill: 'white' } }
+		});	
+		isabel.push(rect);
+		var link = new joint.dia.Link({
+    			source: { id: izfam[0].id },
+    			target: { id: rect.id}
+		});		
+		isabel.push(link);	
+		
+//Justin 
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx, y: solidy+1205},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Justin Sindewald', fill: 'white' } }
+		});	
+		isabel.push(rect);
+		var link = new joint.dia.Link({
+    			source: { id: izfam[0].id },
+    			target: { id: rect.id}
+		});		
+		isabel.push(link);		
+		
+//Lillian 
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-180, y: solidy+1205},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Lillian Wong', fill: 'white' } }
+		});	
+		isabel.push(rect);
+		var link = new joint.dia.Link({
+    			source: { id: izfam[0].id },
+    			target: { id: rect.id}
+		});		
+		isabel.push(link);
+		
+		
+	
+//Esteban Gomez
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+340, y: solidy+905},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Esteban Gomez', fill: 'white' } }
+		});	
+	esteban = [];
+	esteban.push(rect);
+	var link = new joint.dia.Link({
+    			source: { id: treerow4c[0].id },
+    			target: { id: rect.id}
+		});
+	treerow4c.push(rect);	
+	treerow4c.push(link);
+
+//Ashley Hubacek
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+525, y: 915+solidy},
+    			size: { width: 10, height: 10 },
+    			attrs: { rect: { fill: '#FFFFFF' }, text: {fill: 'white' } }
+		});
+	var link = new joint.dia.Link({
+    			source: { id: esteban[0].id },
+    			target: { id: rect.id}
+		});
+	esteban.push(rect);
+	treerow4c.push(rect);	
+	treerow4c.push(link);
+
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+570, y: solidy+905},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Ashley Hubacek', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: esteban[1].id },
+    			target: { id: rect.id}
+		});
+	treerow4c.push(rect);	
+	treerow4c.push(link);
+//Austin Barber
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+455, y: solidy+990},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Austin Barber', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: esteban[1].id },
+    			target: { id: rect.id}
+		});
+	treerow4c.push(rect);	
+	treerow4c.push(link);
+
+
+
+//Alex Hargus
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+450, y: solidy+685},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Alex Hargus', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow4d[0].id },
+    			target: { id: rect.id}
+		});
+	treerow4d.push(rect);	
+	treerow4d.push(link);
+
+//Nick Patenode
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+620, y: solidy+685},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Nick Patenode', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow4d[0].id },
+    			target: { id: rect.id}
+		});
+	treerow4d.push(rect);	
+	treerow4d.push(link);
+
+//John Lu
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx-40, y: solidy+700},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'John Lu', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow4e[0].id },
+    			target: { id: rect.id}
+		});
+	treerow4e.push(rect);	
+	treerow4e.push(link);
+
+//Ted Papadopoulos
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+130, y: solidy+700},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Ted Papadopoulos', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow4e[0].id },
+    			target: { id: rect.id}
+		});
+	treerow4e.push(rect);	
+	treerow4e.push(link);
+
+//Jacob Hanselman
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+290, y: solidy+700},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Jacob Hanselman', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow4e[0].id },
+    			target: { id: rect.id}
+		});
+	treerow4e.push(rect);	
+	treerow4e.push(link);
+//Hurley kids
+
+//Alex
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+770, y: solidy+605},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Alex Prasauskas', fill: 'white' } }
+		});	
+		var link = new joint.dia.Link({
+    			source: { id: treerow3d[0].id },
+    			target: { id: rect.id}
+		});
+	treerow3d.push(rect);
+	treerow3d.push(link);
+
+//Kyle
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+1070, y: solidy+605},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Kyle Weiskircher', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow3d[0].id },
+    			target: { id: rect.id}
+		});
+	treerow3d.push(rect);	
+	treerow3d.push(link);	
+
+//Amanda
+var rect = new joint.shapes.basic.Rect({
+    			position: { x: solidx+970, y: solidy+1005},
+    			size: { width: 150, height: 30 },
+    			attrs: { rect: { fill: '#FAC963' }, text: {text: 'Amanda Sopkin', fill: 'white' } }
+		});	
+	var link = new joint.dia.Link({
+    			source: { id: treerow3d[0].id },
+    			target: { id: rect.id}
+		});
+	treerow3d.push(rect);	
+	treerow3d.push(link);	
+	
+
+
+
+
+
+graph.resetCells(treerow1);
+graph.addCells(treerow2);
+graph.addCells(treerow3);
+graph.addCells(treerow3a);
+graph.addCells(treerow3c);
+graph.addCells(treerow3d);
+graph.addCells(treerow4);
+graph.addCells(treerow4a);
+graph.addCells(treerow4b);
+graph.addCells(treerow4c);
+graph.addCells(treerow4d);
+graph.addCells(treerow4e);
+graph.addCells(isabel);
+
+
+var linkEnds = [
+    { source: 1, target:  0}, { source: 2, target: 0 }, { source: 3, target: 0 }
+ 
+];
+
+// add all links to the graph
+_.each(linkEnds, function(ends) {
+    new joint.dia.Link({
+        source: { id: elements[ends.source].id },
+        target: { id: elements[ends.target].id },
+        z: -1 // make sure all links are displayed under the elements
+    }).addTo(graph);
+});</script>
+</body>
+</html>
